@@ -13,6 +13,59 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//array for get
+$taskList = [
+    'first' => 'Eat',
+    'second' => 'Work',
+    'third' => 'play'
+];
+
+//Route Get, get the $taskArray array
+//use method used for getting the global variable outside this get scope
+//query string
+Route::get('/tasks', function() use($taskList){
+    if(request()->search){
+        return $taskList[request()->search];
+    }else {
+        return $taskList;
+    }
+
+});
+
+Route::get('/tasks/{param}', function($param) use($taskList){
+    return $taskList[$param];
+});
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/test', function (){
+    return view('test');
+});
+
+Route::get('/hello', function(){
+    // return response() -> json([
+    //     'message' => 'Hello World'
+    // ]);
+    $dataArray = [
+        'message' => 'Hello',
+        'Test' => 'Testing'
+    ];
+    //debugging
+    //ddd stands for dump die debug
+    return ddd($dataArray);
+});
+
+//Route Post, Add some data
+Route::post('/tasks', function() use ($taskList){
+    //return request()->all();
+    $taskList[request()->label] = request()->task;
+    return $taskList;
+});
+
+//patch, to modify data
+Route::patch('/tasks', function()use($taskList){
+    $taskList[request()->key] = request()->task;
+    return $taskList;
 });
