@@ -1,5 +1,8 @@
 <?php
 
+
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,65 +16,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//array for get
-$taskList = [
-    'first' => 'Eat',
-    'second' => 'Work',
-    'third' => 'play'
-];
+
 
 //Route Get, get the $taskArray array
 //use method used for getting the global variable outside this get scope
 //query string
-Route::get('/tasks', function() use($taskList){
-    if(request()->search){
-        return $taskList[request()->search];
-    }else {
-        return $taskList;
-    }
+Route::get('/tasks', [TaskController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 
-});
+Route::get('/tasks/{param}', [TaskController::class, 'show']);//show
+// //Route Post, Add some data
+Route::post('/tasks/{key}', [TaskController::class, 'store']);
+// //patch, to modify data
+Route::patch('/tasks/{key}', [TaskController::class, 'update']);
+// //delete, to delete data
+Route::delete('/tasks/{key}', [TaskController::class, 'delete']);
 
-Route::get('/tasks/{param}', function($param) use($taskList){
-    return $taskList[$param];
-});
+// Route::get('/test', function (){
+//     return view('test');
+// });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/hello', function(){
+//     // return response() -> json([
+//     //     'message' => 'Hello World'
+//     // ]);
+//     $dataArray = [
+//         'message' => 'Hello',
+//         'Test' => 'Testing'
+//     ];
+//     //debugging
+//     //ddd stands for dump die debug
+//     return ddd($dataArray);
+// });
 
-Route::get('/test', function (){
-    return view('test');
-});
 
-Route::get('/hello', function(){
-    // return response() -> json([
-    //     'message' => 'Hello World'
-    // ]);
-    $dataArray = [
-        'message' => 'Hello',
-        'Test' => 'Testing'
-    ];
-    //debugging
-    //ddd stands for dump die debug
-    return ddd($dataArray);
-});
 
-//Route Post, Add some data
-Route::post('/tasks/{key}', function($key) use ($taskList){
-    //return request()->all();
-    $taskList[$key] = request()->task;
-    return $taskList;
-});
 
-//patch, to modify data
-Route::patch('/tasks/{key}', function($key)use($taskList){
-    $taskList[$key] = request()->task;
-    return $taskList;
-});
 
-//delete, to delete data
-Route::delete('/tasks/{key}', function($key)use($taskList){
-    unset($taskList[$key]);
-    return $taskList;
-});
