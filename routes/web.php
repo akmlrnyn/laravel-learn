@@ -58,15 +58,15 @@ Route::get('/hello', function(){
 });
 
 //Route Post, Add some data
-Route::post('/tasks/{}', function() use ($taskList){
+Route::post('/tasks/{key}', function($key) use ($taskList){
     //return request()->all();
-    $taskList[request()->label] = request()->task;
+    $taskList[$key] = request()->task;
     return $taskList;
 });
 
 //patch, to modify data
-Route::patch('/tasks', function()use($taskList){
-    $taskList[request()->key] = request()->task;
+Route::patch('/tasks/{key}', function($key)use($taskList){
+    $taskList[$key] = request()->task;
     return $taskList;
 });
 
