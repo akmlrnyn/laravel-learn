@@ -58,7 +58,7 @@ Route::get('/hello', function(){
 });
 
 //Route Post, Add some data
-Route::post('/tasks', function() use ($taskList){
+Route::post('/tasks/{}', function() use ($taskList){
     //return request()->all();
     $taskList[request()->label] = request()->task;
     return $taskList;
@@ -67,5 +67,11 @@ Route::post('/tasks', function() use ($taskList){
 //patch, to modify data
 Route::patch('/tasks', function()use($taskList){
     $taskList[request()->key] = request()->task;
+    return $taskList;
+});
+
+//delete, to delete data
+Route::delete('/tasks/{key}', function($key)use($taskList){
+    unset($taskList[$key]);
     return $taskList;
 });
