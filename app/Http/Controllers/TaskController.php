@@ -43,7 +43,7 @@ class TaskController extends Controller
         'task' => $request -> task,
         'user' => $request -> user
     ]);
-    return 'success';
+    return redirect('/tasks');
     }
 
     //edit method for views
