@@ -26,8 +26,9 @@ Route::get('/', [HomeController::class, 'index']);
 
 //create function, for views
 Route::get('/tasks/create',[TaskController::class, 'create']);
-Route::get('/tasks/{id}', [TaskController::class, 'show']);
 
+
+Route::get('/tasks/{id}', [TaskController::class, 'show']);
 // //Route Post, Add some data
 Route::post('/tasks', [TaskController::class, 'store']);
 //update for views
