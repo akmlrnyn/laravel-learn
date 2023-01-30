@@ -24,9 +24,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/tasks', [TaskController::class, 'index']);
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/tasks/{id}', [TaskController::class, 'show']);//show
+//create function, for views
+Route::get('/tasks/create',[TaskController::class, 'create']);
+Route::get('/tasks/{id}', [TaskController::class, 'show']);
+
 // //Route Post, Add some data
 Route::post('/tasks', [TaskController::class, 'store']);
+//update for views
+Route::get('/tasks/{id}/edit', [TaskController::class, 'edit']);
 // //patch, to modify data
 Route::patch('/tasks/{id}', [TaskController::class, 'update']);
 // //delete, to delete data

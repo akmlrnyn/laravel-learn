@@ -29,6 +29,11 @@ class TaskController extends Controller
             return $task;
     }
 
+    //method create for views
+    public function create(){
+        return view('task.create');
+    }
+
     public function store(Request $request){
     //    $this -> taskList[$request->key] = $request-> task;
     //    return $this -> taskList;
@@ -37,6 +42,11 @@ class TaskController extends Controller
         'user' => $request -> user
     ]);
     return 'success';
+    }
+
+    //edit method for views
+    public function edit($id){
+        return view('task.edit');
     }
 
     public function update(Request $request, $id){
@@ -56,4 +66,5 @@ class TaskController extends Controller
         Task::where('id', $id)->delete();
         return 'success to delete';
     }
+
 }
