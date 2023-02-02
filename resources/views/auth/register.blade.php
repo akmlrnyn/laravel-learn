@@ -12,7 +12,7 @@
     @endif
     <div class="card">
         <div class="card-body">
-            <form action="{{ url('/register') }}" method="POST">
+            <form action="{{ route('register') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="" class="form-label">Name</label>
