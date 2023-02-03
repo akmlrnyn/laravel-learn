@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 //Route Get, get the $taskArray array
 //use method used for getting the global variable outside this get scope
 //query string
-Route::get('/tasks', [TaskController::class, 'index']);
+Route::get('/tasks', [TaskController::class, 'index'])->middleware('is_admin');
 Route::get('/', [HomeController::class, 'index']);
 
 //create function, for views
