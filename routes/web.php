@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 //Route Get, get the $taskArray array
 //use method used for getting the global variable outside this get scope
 //query string
-Route::get('/tasks', [TaskController::class, 'index'])->middleware('is_admin');
+Route::get('/tasks', [TaskController::class, 'index']);
 Route::get('/', [HomeController::class, 'index']);
 
 //create function, for views
