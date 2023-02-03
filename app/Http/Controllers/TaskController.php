@@ -10,11 +10,12 @@ use App\Models\Task;
 class TaskController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    //     $this->middleware('is_admin');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('verified');
+        // $this->middleware('is_admin');
+    }
 
 
     public function index(Request $request){
