@@ -22,22 +22,22 @@ use Illuminate\Support\Facades\Route;
 //Route Get, get the $taskArray array
 //use method used for getting the global variable outside this get scope
 //query string
-Route::get('/tasks', [TaskController::class, 'index']);
+Route::get('/tasks', [TaskController::class, 'index'])->middleware('auth');
 Route::get('/', [HomeController::class, 'index']);
 
 //create function, for views
-Route::get('/tasks/create',[TaskController::class, 'create']);
+Route::get('/tasks/create',[TaskController::class, 'create'])->middleware('auth','is_admin');
 
 
-Route::get('/tasks/{id}', [TaskController::class, 'show']);
+Route::get('/tasks/{id}', [TaskController::class, 'show'])->middleware('auth');
 // //Route Post, Add some data
 Route::post('/tasks', [TaskController::class, 'store']);
 //update for views
-Route::get('/tasks/{id}/edit', [TaskController::class, 'edit']);
+Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->middleware('auth','is_admin');
 // //patch, to modify data
 Route::patch('/tasks/{id}', [TaskController::class, 'update']);
 // //delete, to delete data
-Route::delete('/tasks/{id}', [TaskController::class, 'delete']);
+Route::delete('/tasks/{id}', [TaskController::class, 'delete'])->middleware('auth','is_admin');
 
 // Route::get('/test', function (){
 //     return view('test');
