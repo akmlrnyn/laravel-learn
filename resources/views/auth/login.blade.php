@@ -15,15 +15,6 @@
             <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <label for="" class="form-label">Name</label>
-                    <input name="name" type="text" class="form-control">
-                    @error('name')
-                    <span class="text-danger">
-                        {{ $message }}
-                    </span>
-                    @enderror
-                </div>
-                <div class="mb-3">
                     <label for="" class="form-label">Email</label>
                     <input name="email" type="email" class="form-control">
                     @error('email')

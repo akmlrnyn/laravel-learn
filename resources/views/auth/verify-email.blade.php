@@ -12,7 +12,7 @@
            Or <form action="{{ route('verification.send') }}" method="POST" class="d-inline">
             @csrf
             <button class="btn btn-link p-0 m-0 align-baseline" type="submit">
-                {{ _(click here to request another ) }}
+                {{ _("click here to request another" ) }}
             </button>
         
             </form>
